@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MapsLocation</string>
+    <string name="label_destination">Destino</string>
+</resources>
