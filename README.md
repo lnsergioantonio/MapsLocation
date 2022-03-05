@@ -24,9 +24,13 @@ this is a test application where your location is detected and search for places
 - GSON
 
 ## Screens
+<img src="https://github.com/lnsergioantonio/MapsLocation/blob/main/screens/permissionController.jpg" width="300">
 
-![permissionController](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//permissionController.jpg | width=100)
-![location](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//location.jpg | width=100)
-![search](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//search.jpg | width=100)
-![trace](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//trace.jpg | width=100)
-![destiny](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//destiny.jpg | width=100)
+<img src="https://github.com/lnsergioantonio/MapsLocation/blob/main/screens/location.jpg" width="300">
+
+<img src="https://github.com/lnsergioantonio/MapsLocation/blob/main/screens/search.jpg" width="300">
+
+<img src="https://github.com/lnsergioantonio/MapsLocation/blob/main/screens/trace.jpg" width="300">
+
+<img src="https://github.com/lnsergioantonio/MapsLocation/blob/main/screens/destiny.jpg" width="300">
+
