@@ -1,6 +1,5 @@
 package com.example.mapslocation.data.network
 
-import com.example.mapslocation.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,9 +9,10 @@ import java.util.concurrent.TimeUnit
 private const val timeOut = 120L //20Secs//
 
 object Network {
-    fun createNetworkClient(debug: Boolean = false) =
+    fun createNetworkClient(debug: Boolean = false, urlBase: String) =
         retrofitClient(
-            httpClient(debug)
+            httpClient(debug),
+            urlBase
         )
 
     private fun httpClient(debug: Boolean): OkHttpClient {
@@ -28,10 +28,9 @@ object Network {
         }.build()
     }
 
-    private fun retrofitClient(httpClient: OkHttpClient): Retrofit =
+    private fun retrofitClient(httpClient: OkHttpClient, urlBase:String): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.URL_BASE)
-            //.addConverterFactory(MoshiConverterFactory.create())
+            .baseUrl(urlBase)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient)
             .build()

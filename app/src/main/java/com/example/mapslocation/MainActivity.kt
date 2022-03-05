@@ -33,9 +33,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.api.Places
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 
 
 const val REQUEST_CODE_LOCATION = 617254
+const val REMOTE_CONFIG_URL = "url_base"
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, OnMyLocationButtonClickListener,
     OnMyLocationClickListener, GoogleMap.OnMarkerClickListener {
@@ -55,8 +58,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, OnMyLocationButton
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initViewModel()
-        initObservers()
+        initRemoteValues()
         initToolbar()
 
         // validate permission for location or request permission
@@ -65,6 +67,24 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, OnMyLocationButton
             initMap()
         } else
             requestOnePermission(ACCESS_FINE_LOCATION, REQUEST_CODE_LOCATION)
+    }
+
+    private fun initRemoteValues() {
+        val mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+            .setMinimumFetchIntervalInSeconds(3600)
+            .build()
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+
+        mFirebaseRemoteConfig.fetchAndActivate()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val urlBase = mFirebaseRemoteConfig.getString(REMOTE_CONFIG_URL)
+                    toast(urlBase)
+                    initViewModel(urlBase)
+                    initObservers()
+                }
+            }
     }
 
     @SuppressLint("MissingPermission")
@@ -133,8 +153,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, OnMyLocationButton
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBuilder.build(),100))
     }
 
-    private fun initViewModel() {
-        val api = Network.createNetworkClient(true).create(ApiInterface::class.java)
+    private fun initViewModel(urlBase: String) {
+        val api = Network.createNetworkClient(true,urlBase).create(ApiInterface::class.java)
         val repository = DirectionsRepositoryImpl(api, NetworkHandler(this))
         val useCase = FetchDirectionsUseCase(repository)
         viewModel = MainViewModel(useCase)
@@ -150,8 +170,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, OnMyLocationButton
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.appSearchBar)
+        if (item.itemId == R.id.appSearchBar && origin!=null)
             initAutoComplete()
+        else{
+            toast("Permission for location was denied")
+            requestOnePermission(ACCESS_FINE_LOCATION, REQUEST_CODE_LOCATION)
+        }
         return super.onOptionsItemSelected(item)
     }
 
