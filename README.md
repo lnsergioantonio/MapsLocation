@@ -25,8 +25,8 @@ this is a test application where your location is detected and search for places
 
 ## Screens
 
-![permissionController](https://github.com/lnsergioantonio/MapsLocation/screens/permissionController.jpg | width=100)
-![location](https://github.com/lnsergioantonio/MapsLocation/screens/location.jpg | width=100)
-![search](https://github.com/lnsergioantonio/MapsLocation/screens/search.jpg | width=100)
-![trace](https://github.com/lnsergioantonio/MapsLocation/screens/trace.jpg | width=100)
-![destiny](https://github.com/lnsergioantonio/MapsLocation/screens/destiny.jpg | width=100)
+![permissionController](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//permissionController.jpg | width=100)
+![location](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//location.jpg | width=100)
+![search](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//search.jpg | width=100)
+![trace](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//trace.jpg | width=100)
+![destiny](https://github.com/lnsergioantonio/MapsLocation/blob/main/screens//destiny.jpg | width=100)
