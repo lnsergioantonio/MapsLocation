@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, OnMyLocationButton
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val urlBase = mFirebaseRemoteConfig.getString(REMOTE_CONFIG_URL)
-                    toast(urlBase)
                     initViewModel(urlBase)
                     initObservers()
                 }
