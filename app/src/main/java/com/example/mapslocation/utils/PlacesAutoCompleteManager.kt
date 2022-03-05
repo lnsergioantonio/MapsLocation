@@ -26,9 +26,6 @@ object PlacesAutoCompleteManager {
 //                    latLngBounds.center.getLongitude()
 //                )
 //            ).build()
-//        // Create a RectangularBounds object.
-//        val bounds = RectangularBounds.newInstance(lngBounds)
-        // Use the builder to create a FindAutocompletePredictionsRequest.
         val request =
             FindAutocompletePredictionsRequest.builder() // Call either setLocationBias() OR setLocationRestriction().
                 //.setLocationBias(bounds)
